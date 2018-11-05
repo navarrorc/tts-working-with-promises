@@ -1,0 +1,26 @@
+{
+  "name": "tts-ajax-exercise1",
+  "version": "1.0.0",
+  "description": "---",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/navarrorc/tts-ajax-exercise1.git"
+  },
+  "author": "Roberto C. Navarro",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/navarrorc/tts-ajax-exercise1/issues"
+  },
+  "homepage": "https://github.com/navarrorc/tts-ajax-exercise1#readme",
+  "devDependencies": {
+    "browser-sync": "^2.26.3"
+  }
+}
