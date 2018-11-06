@@ -1,0 +1,18 @@
+# JSONPlaceholder Mock API, see https://github.com/typicode/jsonplaceholder
+
+GET https://jsonplaceholder.typicode.com/users/1
+
+###
+GET https://jsonplaceholder.typicode.com/posts/1
+
+###
+GET https://jsonplaceholder.typicode.com/comments/1
+
+###
+GET https://jsonplaceholder.typicode.com/albums/1
+
+###
+GET https://jsonplaceholder.typicode.com/photos/1
+
+###
+GET https://jsonplaceholder.typicode.com/todos/1
