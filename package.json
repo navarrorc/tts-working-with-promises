@@ -12,14 +12,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/navarrorc/tts-ajax-exercise1.git"
+    "url": "git+https://github.com/navarrorc/tts-working-with-promises.git"
   },
   "author": "Roberto C. Navarro",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/navarrorc/tts-ajax-exercise1/issues"
+    "url": "https://github.com/navarrorc/tts-working-with-promises/issues"
   },
-  "homepage": "https://github.com/navarrorc/tts-ajax-exercise1#readme",
+  "homepage": "https://github.com/navarrorc/tts-working-with-promises#readme",
   "devDependencies": {
     "browser-sync": "^2.26.3"
   }
