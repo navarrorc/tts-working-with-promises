@@ -21,6 +21,8 @@
   },
   "homepage": "https://github.com/navarrorc/tts-working-with-promises#readme",
   "devDependencies": {
-    "browser-sync": "^2.26.3"
+    "browser-sync": "^2.26.3",
+    "eslint": "^5.8.0",
+    "prettier": "1.15.1"
   }
 }

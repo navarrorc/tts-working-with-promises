@@ -6,7 +6,7 @@ var browserSync = require("browser-sync").create();
  * and will automatically watch for html/css/js changes
  */
 browserSync.init({
-    watch: true,
-    open: true,
-    server: "./docs"
+  watch: true,
+  open: true,
+  server: "./docs"
 });
