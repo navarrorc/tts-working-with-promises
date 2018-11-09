@@ -8,7 +8,7 @@ module.exports = {
     jquery: true
   },
   rules: {
-    "no-console": "warn",
+    "no-console": ["warn", { allow: ["warn", "error"] }],
     "no-unused-vars": "warn"
   }
 };

@@ -6,54 +6,43 @@
  * */
 
 (function($) {
-  // Get user and all its posts
+  /**
+   * Get a user and all its posts and posts comments
+   *  */
   function getUser(userId) {
-    return new Promise(function executor(resolve, reject) {
-      $.get("https://jsonplaceholder.typicode.com/users/" + userId, function(
-        user
-      ) {
-        resolve(user);
-      }).fail(function(error) {
-        console.error(error);
-        reject(error);
-      });
-    }); // unfulfilled
+    return fetch(`https://jsonplaceholder.typicode.com/users/${userId}`).then(
+      function(response) {
+        return response.json();
+      }
+    );
   }
 
   function getPosts(user) {
-    return new Promise(function executor(resolve, reject) {
-      $.get(
-        " https://jsonplaceholder.typicode.com/posts",
-        { userId: user.id },
-        function(posts) {
-          user.posts = posts;
-          resolve(user);
-        }
-      ).fail(function(error) {
-        console.error(error);
-        reject(error);
+    return fetch(`https://jsonplaceholder.typicode.com/posts?userId=${user.id}`)
+      .then(function(response) {
+        return response.json();
+      })
+      .then(function(posts) {
+        user.posts = posts;
+        return user; // returns a new Promise() with resolve(user)
       });
-    });
   }
 
   function getComments(post) {
-    return new Promise(function executor(resolve, reject) {
-      $.get(
-        "https://jsonplaceholder.typicode.com/comments",
-        { postId: post.id },
-        function(comments) {
-          post.comments = comments;
-          resolve(); // done!
-        }
-      ).fail(function(error) {
-        console.error(error);
-        reject(error);
+    return fetch(
+      `https://jsonplaceholder.typicode.com/comments?postId=${post.id}`
+    )
+      .then(function(response) {
+        return response.json();
+      })
+      .then(function(comments) {
+        post.comments = comments;
+        // throw new Error("My Error"); // for testing purposes
       });
-    });
   }
 
   function userResolveHandler(user) {
-    return user; // new Promise() with resolve(user)
+    return user; // returns a new Promise() with resolve(user)
   }
 
   getUser(1)
@@ -64,15 +53,13 @@
       user.posts.forEach(function(post) {
         getComments(post)
           .then()
-          .catch(function rejectHandler(error) {
-            console.error("Oops my inner promise chain broke!!!!");
-            console.error(error);
+          .catch(function rejectHandler(err) {
+            console.error("Oops my inner promise chain broke!!!!", err);
           });
       });
       console.log(user);
     })
-    .catch(function rejectHandler(error) {
-      console.error("Oops my outer promise chain broke!!!!");
-      console.error(error);
+    .catch(function rejectHandler(err) {
+      console.error("Oops my outer promise chain broke!!!!", err);
     });
 })(jQuery);
