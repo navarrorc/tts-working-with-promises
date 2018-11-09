@@ -6,6 +6,64 @@
  * */
 
 (function($) {
-  // Add your code below
-  console.log("Hello World!");
+  // Get user and all its posts
+  function getUser(userId) {
+    return new Promise(function executor(resolve, reject) {
+      $.get("https://jsonplaceholder.typicode.com/users/" + userId, function(
+        user
+      ) {
+        resolve(user);
+      }).fail(function(error) {
+        console.error(error);
+        reject(error);
+      });
+    }); // unfulfilled
+  }
+
+  function getPosts(user) {
+    return new Promise(function executor(resolve, reject) {
+      $.get(
+        " https://jsonplaceholder.typicode.com/posts",
+        { userId: user.id },
+        function(posts) {
+          user.posts = posts;
+          resolve(user);
+        }
+      ).fail(function(error) {
+        console.error(error);
+        reject(error);
+      });
+    });
+  }
+
+  function getComments(post) {
+    return new Promise(function executor(resolve, reject) {
+      $.get(
+        "https://jsonplaceholder.typicode.com/comments",
+        { postId: post.id },
+        function(comments) {
+          post.comments = comments;
+          resolve(); // done!
+        }
+      ).fail(function(error) {
+        console.error(error);
+        reject(error);
+      });
+    });
+  }
+
+  function userResolveHandler(user) {
+    return user; // new Promise() with resolve(user)
+  }
+
+  getUser(1)
+    .then(userResolveHandler)
+    .then(getPosts) // appending posts to user object, returns the newly enhanced user object {id: 1, posts:[10] ...}
+    .then(function resolveHandler(user) {
+      // iterate through each use post and attach comments
+      user.posts.forEach(function(post) {
+        getComments(post).then();
+      });
+      console.log(user);
+    });
 })(jQuery);
