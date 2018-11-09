@@ -60,10 +60,19 @@
     .then(userResolveHandler)
     .then(getPosts) // appending posts to user object, returns the newly enhanced user object {id: 1, posts:[10] ...}
     .then(function resolveHandler(user) {
-      // iterate through each use post and attach comments
+      // iterate through each user post and attach comments
       user.posts.forEach(function(post) {
-        getComments(post).then();
+        getComments(post)
+          .then()
+          .catch(function rejectHandler(error) {
+            console.error("Oops my inner promise chain broke!!!!");
+            console.error(error);
+          });
       });
       console.log(user);
+    })
+    .catch(function rejectHandler(error) {
+      console.error("Oops my outer promise chain broke!!!!");
+      console.error(error);
     });
 })(jQuery);
