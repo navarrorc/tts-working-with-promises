@@ -14,7 +14,7 @@
     // console.log(e);
     var userName = $("#input-username").val();
     if (userName) {
-      console.log(userName);
+      // console.log(userName);
       location.href = "profile.html?userName=" + userName;
     }
   });
