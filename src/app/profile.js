@@ -1,11 +1,13 @@
-/// <reference path="../_typings/jquery.d.ts" />
+/// <reference path="../../_typings/jquery.d.ts" />
+
+import $ from "jquery";
 
 /**
  * Create IIFE (Immediately Invoked Function Expression).
  * Now jQuery will be referenced as $ inside the function.
  * */
 
-(function($) {
+export default function() {
   function getUser(userName) {
     return fetch(
       `https://jsonplaceholder.typicode.com/users?username=${userName}`
@@ -14,15 +16,28 @@
     });
   }
 
+  // new Promise(function executor(resolve, reject) {});
+
   function getPosts(user) {
     // console.log("user: ", user);
     return fetch(`https://jsonplaceholder.typicode.com/posts?userId=${user.id}`)
       .then(function(response) {
+        if (!response.ok) {
+          throw Error(
+            `Status Text: ${response.statusText}, Status Code: ${
+              response.status
+            }`
+          );
+        }
         return response.json();
       })
       .then(function(posts) {
         user.posts = posts;
         return user; // returns a new Promise() with resolve(user)
+      })
+      .catch(function(err) {
+        console.error(err);
+        return err;
       });
   }
 
@@ -67,7 +82,7 @@
           `;
         });
         postsHTML += "</ul>";
-        console.log(postsHTML);
+        // console.log(postsHTML);
         $("#user-posts").html(postsHTML);
 
         // Albums
@@ -91,4 +106,4 @@
     alert("User profile not found! You will be redirected to the Login Page.");
     location.href = "login.html";
   }
-})(jQuery);
+}

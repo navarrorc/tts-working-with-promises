@@ -1,11 +1,16 @@
-/// <reference path="../_typings/jquery.d.ts" />
+/// <reference path="../../_typings/jquery.d.ts" />
+
+import $ from "jquery";
 
 /**
  * Create IIFE (Immediately Invoked Function Expression).
  * Now jQuery will be referenced as $ inside the function.
  * */
 
-(function($) {
+// window.$ = $;
+window.jQuery = $; // hack!!!!!
+
+export default function() {
   var id = new URLSearchParams(location.search).get("id");
   var thumbnailsHTML = "";
 
@@ -89,4 +94,4 @@
       // thumbnails
       renderThumbnails(album.photos);
     });
-})(jQuery);
+}

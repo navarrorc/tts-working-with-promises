@@ -1,11 +1,13 @@
-/// <reference path="../_typings/jquery.d.ts" />
+/// <reference path="../../_typings/jquery.d.ts" />
+
+import $ from "jquery";
 
 /**
  * Create IIFE (Immediately Invoked Function Expression).
  * Now jQuery will be referenced as $ inside the function.
  * */
 
-(function($) {
+export default function() {
   // get post
   function getPost(postId) {
     return fetch(`https://jsonplaceholder.typicode.com/posts/${postId}`).then(
@@ -71,4 +73,4 @@
       commentsHTML += "</ul>";
       $("#post-comments").html(commentsHTML);
     });
-})(jQuery);
+}
