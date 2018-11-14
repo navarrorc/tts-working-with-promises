@@ -1,6 +1,6 @@
 # JSONPlaceholder Mock API, see https://github.com/typicode/jsonplaceholder
 
-GET https://jsonplaceholder.typicode.com/users
+GET https://jsonplaceholder.typicode.com/users?username=Bret
 
 ###
 GET https://jsonplaceholder.typicode.com/users?username=Bret

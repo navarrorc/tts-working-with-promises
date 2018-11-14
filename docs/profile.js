@@ -67,6 +67,7 @@
           `;
         });
         postsHTML += "</ul>";
+        console.log(postsHTML);
         $("#user-posts").html(postsHTML);
 
         // Albums
